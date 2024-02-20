@@ -20,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('artgallerybackend-production-e5bc.up.railway.app/auth/login', formData);
+      const response = await axios.post('http://localhost:5454/auth/login', formData);
       if (response.status === 201) {
         const role = response.data.role;
   

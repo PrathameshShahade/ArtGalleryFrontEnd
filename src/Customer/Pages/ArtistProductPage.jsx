@@ -10,7 +10,7 @@ export default function ArtistProductPage({ artistId }) {
   useEffect(() => {
     const fetchProductsByArtist = async () => {
       try {
-        const response = await axios.get(`artgallerybackend-production-e5bc.up.railway.app/artist/${artistName}`);
+        const response = await axios.get(`http://localhost:5454/artist/${artistName}`);
         setProducts(response.data);
         console.log(setProducts(response.data))
       } catch (error) {

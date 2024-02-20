@@ -37,7 +37,7 @@ const AddProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('artgallerybackend-production-e5bc.up.railway.app/products/add', formData);
+      const response = await axios.post('http://localhost:5454/products/add', formData);
       if (response.status === 200) {
         console.log('Data added successfully');
         navigate('/');

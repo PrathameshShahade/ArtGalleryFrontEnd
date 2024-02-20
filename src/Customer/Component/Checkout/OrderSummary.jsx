@@ -20,7 +20,7 @@ const OrderSummary = () => {
       const authToken = sessionStorage.getItem('token');
 
       console.log(email);
-      const response = await axios.get(`artgallerybackend-production-e5bc.up.railway.app/api/carts/${userId}`, {
+      const response = await axios.get(`http://localhost:5454/api/carts/${userId}`, {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }
@@ -50,7 +50,7 @@ const OrderSummary = () => {
     try {
       const userId = sessionStorage.getItem('id');
       const authToken = sessionStorage.getItem('token');
-      const response = await axios.post(`artgallerybackend-production-e5bc.up.railway.appapi/carts/${userId}/payment`, {}, {
+      const response = await axios.post(`http://localhost:5454/carts/${userId}/payment`, {}, {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }

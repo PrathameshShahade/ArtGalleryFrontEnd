@@ -28,7 +28,7 @@ const fetchCartData = async () => {
          }
        };
  
-       const response = await axios.get(`artgallerybackend-production-e5bc.up.railway.app/api/carts/${userId}`, config);
+       const response = await axios.get(`http://localhost:5454/api/carts/${userId}`, config);
        setCartData(response.data.products);
        console.log(response.data.products)
        setLoading(false);

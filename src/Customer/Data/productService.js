@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'artgallerybackend-production-e5bc.up.railway.app'; 
+const API_URL = 'http://localhost:5454'; 
 
 const productService = {
   getAllProducts: async () => {

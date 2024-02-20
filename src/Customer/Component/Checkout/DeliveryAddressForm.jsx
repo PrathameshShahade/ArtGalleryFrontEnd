@@ -21,7 +21,7 @@ const DeliveryAddressForm = () => {
     const fetchData = async () => {
       try {
         const id = sessionStorage.getItem('id');
-        const response = await axios.get(`artgallerybackend-production-e5bc.up.railway.app/address/find/${id}`);
+        const response = await axios.get(`http://localhost:5454/address/find/${id}`);
         if (response.status === 200) {
           setListAdd(response.data);
           console.log(response.data);

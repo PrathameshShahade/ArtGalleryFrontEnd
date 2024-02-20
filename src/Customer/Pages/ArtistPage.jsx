@@ -9,7 +9,7 @@ export default function ArtistPage() {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await axios.get('artgallerybackend-production-e5bc.up.railway.app/artists/name');
+        const response = await axios.get('http://localhost:5454/artists/name');
         setArtists(response.data);
       } catch (error) {
         console.error('Error fetching artists:', error);

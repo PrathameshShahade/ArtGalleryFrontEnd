@@ -26,7 +26,7 @@ export default function BecomeArtist() {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('artgallerybackend-production-e5bc.up.railway.app/auth/signup', {
+          const response = await axios.post('http://localhost:5454/auth/signup', {
             firstname: formData.firstName,
             lastname: formData.lastName,
             email: formData.email,

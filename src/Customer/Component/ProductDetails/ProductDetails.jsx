@@ -26,7 +26,7 @@ console.log(product)
         }
       };
       const response = await axios.post(
-        `artgallerybackend-production-e5bc.up.railway.app/api/carts/${userId}/art/${artId}`,
+        `http://localhost:5454/api/carts/${userId}/art/${artId}`,
         {},
         config
       );
