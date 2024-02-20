@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
-import React from 'react'
 import OrderCard from './OrderCard'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const oredrStatus=[
     {label:"On the Way", value:"on_the_way"},
@@ -9,7 +10,40 @@ const oredrStatus=[
     {label:"Returned", value:"returned"}
 ]
 
+
+
 const Order = () => {
+
+     const [cartData, setCartData] = useState([]);
+     const [loading, setLoading] = useState(true);
+     const [error, setError] = useState(null);
+
+const fetchCartData = async () => {
+     try {
+       const userId = sessionStorage.getItem('id');
+       const authToken = sessionStorage.getItem('token');
+       const config = {
+         headers: {
+           'Authorization': `Bearer ${authToken}`
+         }
+       };
+ 
+       const response = await axios.get(`artgallerybackend-production-e5bc.up.railway.app/api/carts/${userId}`, config);
+       setCartData(response.data.products);
+       console.log(response.data.products)
+       setLoading(false);
+     } catch (error) {
+       console.error('Error fetching cart data:', error);
+       setError(error);
+       setLoading(false);
+     }
+   };
+ 
+   useEffect(() => {
+     fetchCartData();
+
+   }, []); 
+
   return (
     <div className='px:5 lg:px-20'>
         <Grid container sx={{justifyContent:"space-between"}}>
@@ -38,7 +72,7 @@ const Order = () => {
                    
                       
                  <div className='space-y-5 py-5'>
-  {[1,1,1,1,1].map((items, index) => <OrderCard key={index} />)}
+  {cartData.map((item, index) => <OrderCard key={index} items={item}/>)}
 </div>
 
                  </Grid>

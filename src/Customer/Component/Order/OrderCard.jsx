@@ -3,7 +3,7 @@ import React from 'react'
 import AdjustIcon from '@mui/icons-material/Adjust';
 import { useNavigate } from 'react-router-dom';
 
-const OrderCard = () => {
+const OrderCard = ({items}) => {
     const navigate = useNavigate();
   return (
     <div onClick={()=>navigate(`/account/order/${5}`)} className='p-5 shadow-md  hover:shadow-2xl'>
@@ -11,18 +11,18 @@ const OrderCard = () => {
             
            <Grid item xs={6}>
             <div className='flex cursor-pointer'>
-                <img className="w-[5rem] h-[5rem] object-cover object-top" src="https://i.etsystatic.com/15831845/r/il/387934/3032062592/il_570xN.3032062592_e10u.jpg" alt="painting not found"/>
+                <img className="w-[5rem] h-[5rem] object-cover object-top" src={items.imageUrl} alt="painting not found"/>
                 <div className='ml-5 space-y-2'>
 
-                    <p className="">Painting Name</p>
-                    <p classname="">Artist Name:Ron</p>
+                    <p className="">{items.title}</p>
+                    <p classname="">{items.artistName}</p>
                 </div>
             </div>
 
            </Grid>
                 
                 <Grid item xs={2}>
-                    <p>₹5000</p>
+                    <p>₹{items.discountedPrice}</p>
                 </Grid>
 
                 <Grid item xs={4}>
@@ -32,18 +32,18 @@ const OrderCard = () => {
                         <AdjustIcon sx={{width:"15px",height:"15px"}} 
                         className='text-green-600 mr-2 text-sm'/>
                         <span>
-                            Delivered On Feb 10
+                        Expected Delivery On March 1
                         </span>
                     </p>
                     <p className='text-xs'>
-                        Your item Has Been Delivered
+                    Expected Delivery On March 1
                     </p>
                       </div>
                     }
 
                     { false && <p>
                         <span>
-                            Expected Delivery On Feb 10
+                            Expected Delivery On March 1
                         </span>
                     </p>}
                 </Grid>
