@@ -29,7 +29,7 @@ export default function SignUp() {
       }
   
 
-      const response = await axios.post('artgallerybackend-production-e5bc.up.railway.app/auth/signup', {
+      const response = await axios.post('https://artgallerybackend-production-e5bc.up.railway.app/auth/signup', {
         firstname: formData.firstName, 
         lastname: formData.lastName, 
         email: formData.email,
