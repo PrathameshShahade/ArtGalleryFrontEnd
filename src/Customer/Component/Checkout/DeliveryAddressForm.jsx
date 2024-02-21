@@ -1,12 +1,12 @@
 import { Box, Button, Grid, TextField } from '@mui/material';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddressCard from '../AddressCard/AddressCard';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const DeliveryAddressForm = () => {
   const navigate = useNavigate();
-  const [listAdd,setListAdd] = useState({});
+  const [listAdd, setListAdd] = useState({});
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,6 +16,7 @@ const DeliveryAddressForm = () => {
     zipCode: '',
     mobile: ''
   });
+  const [mobileError, setMobileError] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,11 +31,11 @@ const DeliveryAddressForm = () => {
         console.error('Error delivering address:', error);
       }
     };
-  
-    fetchData(); 
-  
-  }, []); 
-  
+
+    fetchData();
+
+  }, []);
+
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -42,6 +43,16 @@ const DeliveryAddressForm = () => {
       ...prevState,
       [id]: value
     }));
+
+    if (id === 'mobile') {
+      // Basic mobile number format validation
+      const isValidMobile = /^\d{10}$/.test(value);
+      if (!isValidMobile) {
+        setMobileError('Please enter a 10-digit mobile number');
+      } else {
+        setMobileError('');
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -63,8 +74,8 @@ const DeliveryAddressForm = () => {
       <Grid container spacing={4}>
         <Grid xs={12} lg={5} className='border rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll'>
           <div className='p-5 py-7 border-b cursor-pointer'>
-            <AddressCard formData={listAdd}/>
-            <Button sx={{ mt: 2,bgcolor: "RGB(145 85 253)" }} size='large' variant="contained" onClick={()=>navigate("/cart/checkout?step=3")}>
+            <AddressCard formData={listAdd} />
+            <Button sx={{ mt: 2, bgcolor: "RGB(145 85 253)" }} size='large' variant="contained" onClick={() => navigate("/cart/checkout?step=3")}>
               Deliver Here
             </Button>
           </div>
@@ -141,29 +152,29 @@ const DeliveryAddressForm = () => {
                     fullWidth
                     autoComplete='shipping postal-code'
                     value={formData.zipCode}
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                     inputProps={{
                       inputMode: 'numeric',
                       pattern: '[0-9]*',
                       maxLength: 10,
                       minLength: 10,
-                    }}/>
+                    }} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-               <TextField
-                required
-                id="mobile"
-                name="mobile"
-                label="Phone Number"
-                fullWidth
-                type='number'
-                autoComplete='given-name'
-                value={formData.mobile}
-                onChange={handleChange} 
-                />
-
-
+                  <TextField
+                    required
+                    id="mobile"
+                    name="mobile"
+                    label="Phone Number"
+                    fullWidth
+                    type='number'
+                    autoComplete='given-name'
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    error={!!mobileError}
+                    helperText={mobileError}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Button sx={{ py: 1.5, mt: 2, bgcolor: "RGB(145 85 253)" }} size='large' variant="contained" type="submit">

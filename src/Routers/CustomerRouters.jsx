@@ -14,6 +14,7 @@ import BecomeArtist from '../Customer/Pages/BecomeArtist'
 import AddProduct from '../Customer/Pages/AddProduct'
 import AboutUs from '../Customer/Pages/AboutUs'
 import ArtistProductPage from '../Customer/Pages/ArtistProductPage'
+import EditProductForm from '../Customer/Pages/EditProduct'
 
 
 const CustomerRouters = () => {
@@ -36,6 +37,7 @@ const CustomerRouters = () => {
             <Route path="/artist" element={<ArtistPage/>}></Route> 
             <Route path="/artist/:artistName" element={<ArtistProductPage />} /> 
             <Route path="/seller" element={<BecomeArtist/>}></Route> 
+            <Route path="/editart" element={<EditProductForm/>}></Route> 
             <Route path="/addproduct" element={<AddProduct/>}></Route>
 
             

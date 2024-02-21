@@ -11,6 +11,7 @@ export default function SignUp() {
     password: '',
     confirmPassword: ''
   });
+  const [emailError, setEmailError] = useState('');
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -18,16 +19,28 @@ export default function SignUp() {
       ...prevState,
       [id]: value
     }));
+
+    if (id === 'email') {
+      // Basic email format validation
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      if (!isValidEmail) {
+        setEmailError('Please enter a valid email address');
+      } else {
+        setEmailError('');
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-
       if (formData.password !== formData.confirmPassword) {
         throw new Error('Passwords do not match');
       }
-  
+
+      if (emailError) {
+        throw new Error('Invalid email address');
+      }
 
       const response = await axios.post('http://localhost:5454/auth/signup', {
         firstname: formData.firstName, 
@@ -61,7 +74,8 @@ export default function SignUp() {
                 <input type="text" placeholder="First Name" id="firstName" className="p-4 text-lg w-1/2 box-border border border-gray-300 rounded" onChange={handleChange} value={formData.firstName} required/>
                 <input type="text" placeholder="Last Name" id="lastName" className="p-4 text-lg w-1/2 box-border border border-gray-300 rounded" onChange={handleChange} value={formData.lastName} required />
               </div>
-              <input type="email" placeholder="Email" id="email" className="p-4 text-lg w-full box-border mb-4 border border-gray-300 rounded" onChange={handleChange} value={formData.email} required/>
+              <input type="email" placeholder="Email" id="email" className={`p-4 text-lg w-full box-border mb-4 border ${emailError ? 'border-red-500' : 'border-gray-300'} rounded`} onChange={handleChange} value={formData.email} required/>
+              {emailError && <p className="text-red-500 text-sm mb-2">{emailError}</p>}
               <input type="password" placeholder="Password" id="password" className="p-4 text-lg w-full box-border mb-4 border border-gray-300 rounded" onChange={handleChange} value={formData.password} required/>
               <input type="password" placeholder="Confirm Password" id="confirmPassword" className="p-4 text-lg w-full box-border mb-4 border border-gray-300 rounded" onChange={handleChange} value={formData.confirmPassword} required/>
               <button type="submit" className="p-4 text-lg w-full bg-green-500 text-white cursor-pointer rounded hover:bg-green-600">SUBMIT</button>

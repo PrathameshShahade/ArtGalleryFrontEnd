@@ -42,16 +42,10 @@ function Footer() {
             <nav>
               <ul>
                 <li>
-                  <Link href="#">Browse Artworks</Link>
+                  <Link href="/art">Browse Artworks</Link>
                 </li>
                 <li>
-                  <Link href="#">Featured Artists</Link>
-                </li>
-                <li>
-                  <Link href="#">Sale</Link>
-                </li>
-                <li>
-                  <Link href="#">Gift Cards</Link>
+                  <Link href="/artist">Featured Artists</Link>
                 </li>
               </ul>
             </nav>
@@ -65,16 +59,10 @@ function Footer() {
             <nav>
               <ul>
                 <li>
-                  <Link href="#">About Us</Link>
+                  <Link href="/aboutus">About Us</Link>
                 </li>
                 <li>
-                  <Link href="#">Contact Us</Link>
-                </li>
-                <li>
-                  <Link href="#">Events</Link>
-                </li>
-                <li>
-                  <Link href="#">FAQ</Link>
+                  <Link href="/aboutus">Contact Us</Link>
                 </li>
               </ul>
             </nav>
@@ -85,19 +73,19 @@ function Footer() {
           Connect
         </Typography>
         <div className="flex justify-center space-x-5 mt-4">
-          <Link href="#" className="flex items-center mx-2">
+          <Link href="https://www.facebook.com/" className="flex items-center mx-2">
             <FacebookIcon /> <span className="ml-1">Facebook</span>
           </Link>
-          <Link href="#" className="flex items-center mx-2">
+          <Link href="https://twitter.com/" className="flex items-center mx-2">
             <TwitterIcon /> <span className="ml-1">Twitter</span>
           </Link>
-          <Link href="#" className="flex items-center mx-2">
+          <Link href="https://www.instagram.com/accounts/login/" className="flex items-center mx-2">
             <InstagramIcon /> <span className="ml-1">Instagram</span>
           </Link>
-          <Link href="#" className="flex items-center mx-2">
+          <Link href="https://in.pinterest.com/" className="flex items-center mx-2">
             <PinterestIcon /> <span className="ml-1">Pinterest</span>
           </Link>
-          <Link href="#" className="flex items-center mx-2">
+          <Link href="https://in.linkedin.com/" className="flex items-center mx-2">
             <LinkedInIcon /> <span className="ml-1">LinkedIn</span>
           </Link>
         </div>

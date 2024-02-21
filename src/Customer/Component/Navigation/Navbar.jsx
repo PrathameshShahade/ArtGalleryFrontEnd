@@ -50,8 +50,12 @@ const Navbar = () => {
                     <p onClick={()=>navigate('/artist')} className="mr-4 text-gray-700 cursor-pointer hover:text-blue-500">Artists</p>
                     <p onClick={()=>navigate('/aboutus')} className="mr-4 text-gray-700 cursor-pointer hover:text-blue-500">About Us</p>
                     {sessionStorage.getItem('role') === 'artist' && (
-                        <p onClick={()=>navigate('/addproduct')} className="mr-4 text-gray-700 cursor-pointer hover:text-blue-500">Add Product</p>
+                       <>
+                        <p onClick={()=>navigate('/addproduct')} className="mr-4 text-gray-700 cursor-pointer hover:text-blue-500">Add Product</p> 
+                        <p onClick={()=>navigate('/editart')} className="mr-4 text-gray-700 cursor-pointer hover:text-blue-500">Edit Product</p>
+                       </>
                     )}
+                    
                     {sessionStorage.getItem('role') !== 'artist' && (
                         <p onClick={()=>navigate('/seller')} className="mr-4 text-gray-700 cursor-pointer hover:text-blue-500">Seller</p>
                     )}
