@@ -27,10 +27,34 @@ const AddProductForm = () => {
         }
       }));
     } else {
-      setFormData(prevState => ({
-        ...prevState,
-        [id]: value
-      }));
+      let newValue = value;
+      if (id === 'price') {
+        newValue = parseFloat(value);
+        const discountPercentage = parseFloat(formData.discountPercentage);
+        const discountedPrice = newValue * (1 - discountPercentage / 100);
+        setFormData(prevState => ({
+          ...prevState,
+          [id]: newValue,
+          discountedPrice: discountedPrice.toFixed(2) 
+        }));
+      } else if (id === 'discountPercentage') {
+        newValue = parseFloat(value);
+        if (newValue > 99) {
+          newValue = 99;
+        }
+        const price = parseFloat(formData.price);
+        const discountedPrice = price * (1 - newValue / 100);
+        setFormData(prevState => ({
+          ...prevState,
+          [id]: newValue,
+          discountedPrice: discountedPrice.toFixed(2) 
+        }));
+      } else {
+        setFormData(prevState => ({
+          ...prevState,
+          [id]: newValue
+        }));
+      }
     }
   };
 
