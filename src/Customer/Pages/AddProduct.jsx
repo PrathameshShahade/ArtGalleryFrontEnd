@@ -29,25 +29,18 @@ const AddProductForm = () => {
     } else {
       let newValue = value;
       if (id === 'price') {
-        newValue = parseFloat(value);
-        const discountPercentage = parseFloat(formData.discountPercentage);
-        const discountedPrice = newValue * (1 - discountPercentage / 100);
         setFormData(prevState => ({
           ...prevState,
-          [id]: newValue,
-          discountedPrice: discountedPrice.toFixed(2) 
+          [id]: newValue
         }));
       } else if (id === 'discountPercentage') {
         newValue = parseFloat(value);
         if (newValue > 99) {
           newValue = 99;
         }
-        const price = parseFloat(formData.price);
-        const discountedPrice = price * (1 - newValue / 100);
         setFormData(prevState => ({
           ...prevState,
-          [id]: newValue,
-          discountedPrice: discountedPrice.toFixed(2) 
+          [id]: newValue
         }));
       } else {
         setFormData(prevState => ({
@@ -57,6 +50,7 @@ const AddProductForm = () => {
       }
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
